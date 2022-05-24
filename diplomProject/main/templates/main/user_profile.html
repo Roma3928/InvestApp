@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block styles %}
+{% endblock %}
+
+{% block content %}
+<section class="vh-100 mt-5">
+    <div class="container">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-md-12 col-xl-4">
+                <p class="text-center h1 fw-bold mb-2">Настройка</p><br>
+                <div class="card" style="border-radius: 15px;">
+                    <div class="card-body text-center">
+                        <div class="mt-3 mb-4">
+                            <img src="{{ user.avatar.url }}" class="rounded-circle img-fluid" style="width: 150px; height: 150px;" />
+                        </div>
+                        <h4 class="mb-2">{{ user.last_name }} {{ user.first_name }}</h4>
+                        <form class="mt-4" enctype="multipart/form-data" method="post">
+                            {% csrf_token %}
+
+                            <label class="d-flex form-label">Изменить логин</label>
+                            <div class="form-outline mb-4">
+                                {% render_field form.username|add_error_class:"is-invalid" type="text" class+="form-control form-control-lg" %}
+                                <div class="invalid-feedback">
+                                    {{form.username.errors}}
+                                </div>
+                            </div>
+
+                            <label class="d-flex form-label">Изменить email</label>
+                            <div class="form-outline mb-4">
+                                {% render_field form.email|add_error_class:"is-invalid" type="text" class+="form-control form-control-lg" %}
+                                <div class="invalid-feedback">
+                                    {{form.email.errors}}
+                                </div>
+                            </div>
+
+                            <label class="d-flex form-label">Изменить фото</label>
+                            <div class="form-outline mb-4">
+                                {#{% render_field form.avatar type="file" class+="form-control" %}#}
+                                <input type="file" class="form-control form-control-lg " accept="image/*" name="avatar"><br>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary btn-lg ">Сохранить изменение</button>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

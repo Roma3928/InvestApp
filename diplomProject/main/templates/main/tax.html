@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+Расчет налога
+{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/calculator.css' %}">
+<!-- Page Content-->
+<section>
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5">
+            <div class="col-lg-6">
+                <h1 class="mt-5">Считаем налог</h1>
+                <p class="lead">Калькулятор рассчитает сумму налога на доход, по которому брокер не выступают налоговыми агентами.</p><br>
+
+                <div class="content">
+                    <form method="POST">
+                        {% csrf_token %}
+                        <label class="lead">Тип дохода&nbsp&nbsp</label>
+                        <select name="opr" class="form-control-lg">
+                            <option value="dividends">НДФЛ с дивидендов от иностранных компаний</option>
+                            <option value="currency">НДФЛ с курсовой разницы валют</option>
+                            <option value="metal">НДФЛ от продажи драгоценных металлов</option>
+                        </select>
+
+                        <div style="height: 3rem"></div>
+
+                        <label class="lead">Сумма за продажу</label>
+                        <p><span class="input"><input type="text" name="pr"><span></span></span></p>
+
+                        <label class="lead">Комиссия за продажу</label>
+                        <p><span class="input"><input type="text" name="kpr" ><span></span></span></p>
+
+                        <label class="lead">Сумма за покупку</label>
+                        <p><span class="input"><input type="text" name="po"><span></span></span></p>
+
+                        <label class="lead">Комиссия за покупку</label>
+                        <p><span class="input"><input type="text" name="kpo"><span></span></span></p><br>
+
+                        <button type="submit" class="btn btn-dark btn-rounded">Рассчитать</button><br><br>
+
+                        <label class="lead">Налог</label>
+                        <p><span class="input"><input class ="colortext" value ="{{c}}" type="text" disabled><span></span></span></p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div style="height: 40rem"></div>
+{% endblock %}

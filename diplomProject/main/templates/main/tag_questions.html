@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/feed.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container px-4 px-lg-5 mt-5">
+   <div class="feed-top">
+            <span class="mr-2 h1">Тег:</span>
+            <span>{{ tag }}</span>
+        </div>
+    <div class="container-feed">
+        {% for question in questions %}
+        <div class="card-feed">
+            <div class="card__body">
+                {% for tag in question.tags.all %}
+                <a href="{% url 'tag' tag %}" class="tag tag-blue " style="text-decoration: none">{{ tag }}</a>
+                {% endfor %}
+                <h4><a href="{% url 'question' question.pk %}" style="text-decoration: none">{{ question.title }}</a></h4>
+                <p class="items-text" >{{ question.text }}</p>
+            </div>
+            <div class="card__footer">
+                <div class="user">
+                    <img src={{question.author.avatar.url}} width="64" height="64" class="rounded-circle">
+                    <div class="user__info">
+                        <h5>{{question.author.username}}</h5>
+                        <small>{{question.date}}</small>
+                    </div>
+                </div>
+                <div style=" padding-left: 63px;">
+                    <div class="mb-1" style="width: 55px">
+                        <span>{{ question.rate }}</span>
+                        <i data-pk="{{question.id}}" data-type="question" class="fa fa-plus mr-1" aria-hidden="true"></i>
+                        <i data-pk="{{question.id}}" data-type="question" class="fa fa-minus" aria-hidden="true"></i>
+                    </div>
+                    <a style="text-decoration: none" href="{% url 'question' question.pk %}" class="text-dark">
+                        <span>{{ question.answer_set.count }}</span>
+                        <i class="bi bi-chat-fill"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% include "inc/_paginator.html" %}
+</div>
+{% endblock %}

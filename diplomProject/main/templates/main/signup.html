@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+{% load static %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/user_profile.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<section class="p-2 w-75 m-auto mt-5">
+    <div class="col-12">
+        <div class="row justify-content-center">
+            <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+
+                <p class="h1 fw-bold mb-2">Регистрация</p><br>
+                <form enctype="multipart/form-data" method="post">
+                    {% csrf_token %}
+
+                    <div class="d-flex flex-row align-items-center mb-3">
+                        <div class="form-outline flex-fill mb-0">
+                            {% render_field form.last_name|add_error_class:"is-invalid" type="text" class+="form-control form-control-lg" required='True' placeholder="Введите фамилию" %}
+                            <div class="invalid-feedback">
+                                {{form.last_name.errors}}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex flex-row align-items-center mb-3">
+                        <div class="form-outline flex-fill mb-0">
+                            {% render_field form.first_name|add_error_class:"is-invalid" type="text" class+="form-control form-control-lg" required='True' placeholder="Введите имя" %}
+                            <div class="invalid-feedback">
+                                {{form.first_name.errors}}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex flex-row align-items-center mb-3">
+                        <div class="form-outline flex-fill mb-0">
+                            {% render_field form.email|add_error_class:"is-invalid" type="email" class+="form-control form-control-lg" required='True' placeholder="Введите Email" %}
+                            <div class="invalid-feedback">
+                                Эта электронная почта уже зарегистрирована
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex flex-row align-items-center mb-3">
+                        <div class="form-outline flex-fill mb-0">
+                            {% render_field form.username|add_error_class:"is-invalid" type="text" class+="form-control form-control-lg" required='True' placeholder="Введите логин"%}
+                            <div class="invalid-feedback">
+                                {{form.username.errors}}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex flex-row align-items-center mb-3">
+                        <div class="form-outline flex-fill mb-0">
+                            {% render_field form.password type="password" class+="form-control form-control-lg" placeholder="Введите пароль"%}
+                        </div>
+                    </div>
+
+                    <div class="d-flex flex-row align-items-center mb-3">
+                        <div class="form-outline flex-fill mb-0">
+                            {% render_field form.repeat_password|add_error_class:"is-invalid" type="password" class+="form-control form-control-lg" placeholder="Повторите пароль"%}
+                            <div class="invalid-feedback">
+                                {{form.repeat_password.errors}}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex flex-row align-items-center mb-3">
+                        <div class="form-outline flex-fill mb-0">
+                            <label class="form-label"  style="margin-left: 0px;">Загрузить аватар</label>
+                            {% render_field form.avatar type="file" class+="form-control form-control-lg" %}
+                        </div>
+                    </div>
+                    <br>
+                    <div class="d-flex flex-row align-items-center mb-3">
+                        <button type="submit" class="btn btn-primary btn-lg ">Регистрация</button>
+                    </div>
+                </form>
+
+            </div>
+            <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
+                <img src="{% static 'img/signup.png' %}" class="img-fluid">
+            </div>
+
+        </div>
+    </div>
+</section>
+{% endblock %}

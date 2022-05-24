@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Главная
+{% endblock %}
+
+{% block content %}
+        <!-- Header - set the background image for the header in the line below-->
+        <header class="py-5 bg-image-full" style="background-image: url('/static/img/Other/home1.jpg')">
+          <div style="height: 25rem"></div>
+        </header>
+        <!-- Content section-->
+        <section class="py-5">
+            <div class="container my-5">
+                <div class="row justify-content-center">
+                    <h2>Самостоятельно заплатить НДФЛ с инвестиций </h2>
+                    {% for el in content %}
+                    <div class="col-lg-6">
+                        <p class="lead">{{el.title}}</p>
+                        <p class="mb-0">{{el.content|linebreaksbr}} </p>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+        <!-- Image element - set the background image for the header in the line below-->
+        <div class="py-5 bg-image-full" style="background-image: url('/static/img/Other/home2.jpg')">
+            <!-- Put anything you want here! The spacer below with inline CSS is just for demo purposes!-->
+            <div style="height: 20rem"></div>
+        </div>
+        <!-- Content section-->
+        <section class="py-5">
+            <div class="container my-5">
+                <div class="row justify-content-center">
+                    <div class="col-lg-6">
+                        <h2>Учебник инвестиций</h2>
+                        <p class="lead"> </p>
+                        <p class="mb-0"></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+{% endblock %}

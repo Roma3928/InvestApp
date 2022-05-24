@@ -1,0 +1,97 @@
+.feed-top{
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.feed-top  span{
+    font-size: 25px;
+}
+
+.feed-top  a{
+    color: darkblue;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+.container-feed {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 1200px;
+    margin-block: 2rem;
+    gap: 2rem;
+}
+
+.card-feed {
+    display: flex;
+    flex-direction: column;
+    width: clamp(20rem, calc(20rem + 2vw), 22rem);
+    overflow: hidden;
+    box-shadow: 0 .1rem 1rem rgba(0, 0, 0, 0.1);
+    border-radius: 1em;
+    background: #FFFFFF;
+    background: linear-gradient(to right, #FFFFFF, #FFFFFF);
+
+}
+
+.card__body {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
+.tag {
+    align-self: flex-start;
+    padding: .25em .75em;
+    border-radius: 1em;
+    font-size: .85rem;
+}
+
+.tag + .tag {
+    margin-left: .5em;
+}
+
+.tag-blue {
+    background: #56CCF2;
+    background: linear-gradient(to bottom, #2F80ED, #56CCF2);
+    color: #fafafa;
+}
+
+.card__body h4 {
+    font-size: 1.5rem;
+}
+
+.card__footer {
+    display: flex;
+    padding: 1rem;
+    margin-top: auto;
+}
+
+.user {
+    display: flex;
+    gap: .5rem;
+}
+
+.user__info > small {
+    color: #666;
+}
+
+.items-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 7;
+    -webkit-box-orient: vertical;
+}
+
+
+
+
+
